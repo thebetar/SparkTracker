@@ -5,10 +5,14 @@ export class Event {
     /**
      * @param {string} name 
      * @param {HTMLElement} element 
+     * @param {number} scroll
+     * @param {number} duration
      */
-    constructor(name, element = null) {
+    constructor(name, element = null, scroll = 0, duration = 0) {
         this.name = name;
         this.element = element;
+        this.scroll = scroll;
+        this.duration = duration;
         this.url = window.location.href;
         this.referrer = document.referrer;
         this.language = navigator.language || navigator.userLanguage;
@@ -20,14 +24,22 @@ export class Event {
 
     toJSON() {
         return {
+            // Primary info
             name: this.name,
             url: this.url,
-            referrer: this.referrer,
+
+            // Secondary info
+            scroll: this.scroll,
+            duration: this.duration,
+            timezone: this.timezone,
             language: this.language,
+
+            // Additional info
+            referrer: this.referrer,
             user_agent: this.userAgent,
             screen_width: this.screenWidth,
             screen_height: this.screenHeight,
-            timezone: this.timezone,
+
             element: this.element ? {
                 tagName: this.element.tagName,
                 id: this.element.id || null,
