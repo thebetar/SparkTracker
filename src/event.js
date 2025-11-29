@@ -4,11 +4,11 @@ const SUPABASE_KEY = 'sb_publishable_qKwdg4z8WaFaMILkWU6a8w_70UrxeQ5';
 export class Event {
     /**
      * @param {string} name 
-     * @param {HTMLElement} element 
      * @param {number} scroll
      * @param {number} duration
+     * @param {HTMLElement} element 
      */
-    constructor(name, element = null, scroll = 0, duration = 0) {
+    constructor(name, scroll = 0, duration = 0, element = null) {
         this.name = name;
         this.element = element;
         this.scroll = scroll;

@@ -30,7 +30,7 @@ import { Event } from './event.js';
 
             trackedElementsSet.add(button);
             button.addEventListener('click', function (event) {
-                const eventData = new Event('button_click', event.currentTarget, maxScroll, getDuration());
+                const eventData = new Event('button_click', maxScroll, getDuration(), event.currentTarget);
                 eventData.send();
             });
 
@@ -62,7 +62,7 @@ import { Event } from './event.js';
 
             if (reached) {
                 scrollMilestonesSet.add(key);
-                const eventData = new Event(`scroll_depth_${milestone.type}`, null, milestone.value, getDuration());
+                const eventData = new Event(`scroll_depth_${milestone.type}`, milestone.value, getDuration());
                 eventData.send();
             }
         });
@@ -83,7 +83,7 @@ import { Event } from './event.js';
             clearInterval(interval);
         }
 
-        const eventData = new Event('session_end', null, maxScroll, getDuration());
+        const eventData = new Event('session_end', maxScroll, getDuration());
         eventData.send();
     });
 
