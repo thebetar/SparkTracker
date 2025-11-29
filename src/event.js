@@ -22,11 +22,23 @@ export class Event {
         this.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     }
 
+    getUserId() {
+        let userId = localStorage.getItem('vonk_tracker_user_id');
+
+        if (!userId) {
+            userId = crypto.randomUUID();
+            localStorage.setItem('vonk_tracker_user_id', userId);
+        }
+
+        return userId;
+    }
+
     toJSON() {
         return {
             // Primary info
             name: this.name,
             url: this.url,
+            user_id: this.getUserId(),
 
             // Secondary info
             scroll: this.scroll,
