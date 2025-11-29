@@ -5,13 +5,16 @@
   "main": "dist/spark-tracker.min.js",
   "scripts": {
     "build": "esbuild src/vonk-tracker.js --bundle --minify --outfile=dist/spark-tracker.min.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --experimental-vm-modules node_modules/.bin/jest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "devDependencies": {
-    "esbuild": "^0.27.0"
+    "@types/jest": "^30.0.0",
+    "esbuild": "^0.27.0",
+    "jest": "^30.2.0",
+    "jest-environment-jsdom": "^30.2.0"
   }
 }
