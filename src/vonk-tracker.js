@@ -87,5 +87,5 @@ import { Event } from './event.js';
         eventData.send();
     });
 
-    document.addEventListener('DOMContentLoaded', initialiseTracking);
+    window.addEventListener('load', initialiseTracking);
 })();

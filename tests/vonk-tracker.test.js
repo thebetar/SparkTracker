@@ -14,8 +14,8 @@ describe('vonk-tracker', () => {
         Object.defineProperty(document.documentElement, 'scrollHeight', { writable: true, configurable: true, value: 2000 });
     });
 
-    it('should send a page_load event on DOMContentLoaded', () => {
-        document.dispatchEvent(new Event('DOMContentLoaded'));
+    it('should send a page_load event on load', () => {
+        window.dispatchEvent(new Event('load'));
         expect(global.fetch).toHaveBeenCalled();
         const body = JSON.parse(global.fetch.mock.calls[0][1].body);
         expect(body.name).toBe('page_load');
@@ -23,7 +23,7 @@ describe('vonk-tracker', () => {
 
     it('should send a button_click event when a button is clicked', () => {
         document.body.innerHTML = '<button id="test-btn">Click me</button>';
-        document.dispatchEvent(new Event('DOMContentLoaded'));
+        window.dispatchEvent(new Event('load'));
         global.fetch.mockClear();
 
         const btn = document.getElementById('test-btn');
@@ -36,7 +36,7 @@ describe('vonk-tracker', () => {
     });
 
     it('should send a scroll_depth_pixel event when pixel milestone is reached', () => {
-        document.dispatchEvent(new Event('DOMContentLoaded'));
+        window.dispatchEvent(new Event('load'));
         global.fetch.mockClear();
 
         Object.defineProperty(window, 'scrollY', { writable: true, configurable: true, value: 150 });
@@ -49,7 +49,7 @@ describe('vonk-tracker', () => {
     });
 
     it('should send scroll_depth_percentage events for 50% and 100% milestones', () => {
-        document.dispatchEvent(new Event('DOMContentLoaded'));
+        window.dispatchEvent(new Event('load'));
         global.fetch.mockClear();
 
         Object.defineProperty(window, 'scrollY', { writable: true, configurable: true, value: 500 });
@@ -67,7 +67,7 @@ describe('vonk-tracker', () => {
     });
 
     it('should send a session_end event on beforeunload', () => {
-        document.dispatchEvent(new Event('DOMContentLoaded'));
+        window.dispatchEvent(new Event('load'));
         global.fetch.mockClear();
 
         window.dispatchEvent(new Event('beforeunload'));
